@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
+  mode: 'production',
   firebase: {
     apiKey: 'AIzaSyCrFBIkK0RUptEgEo4ebkqCqyrWZjVPZIU',
     authDomain: 'tuning-a617f.firebaseapp.com',

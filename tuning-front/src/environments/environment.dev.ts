@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  mode: 'dev',
   firebase: {
     apiKey: 'AIzaSyBFxCfuCLJzrjkaJmK20tn3Vfzen6ZLVoQ',
     authDomain: 'tuning-dev.firebaseapp.com',

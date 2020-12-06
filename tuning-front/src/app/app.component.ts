@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,8 @@ export class AppComponent implements OnInit {
   constructor(private db: AngularFirestore) { }
 
   ngOnInit(): void {
+    console.log('mode: ' + environment.mode);
+
     this.comments = this.db.collection<Comment>('comments').valueChanges();
   }
 }
