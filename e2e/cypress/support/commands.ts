@@ -22,7 +22,7 @@ const fbConfig = {
 firebase.initializeApp(fbConfig);
 
 firebase.firestore().settings({
-  host: 'localhost:8080',
+  host: Cypress.env('FIRESTORE_EMULATOR_HOST'),
   ssl: false,
 });
 

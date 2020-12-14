@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   mode: 'local',
+  firestoreEmulatorUrl: 'localhost:8080', //only local
   firebase: {
     apiKey: 'apikey',
     authDomain: 'tuning-dev.firebaseapp.com',
