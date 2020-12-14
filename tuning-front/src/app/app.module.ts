@@ -25,7 +25,7 @@ import { FirestoreDriver } from './firestore-driver';
         if (environment.mode === 'local') {
           console.log('use local firestore emulator');
           db.firestore.settings({
-            host: environment.firestoreEmulatorUrl,
+            host: 'localhost:8080',
             ssl: false,
             experimentalForceLongPolling: true
           });
