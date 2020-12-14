@@ -3,8 +3,7 @@ import "firebase/database";
 import "firebase/firestore";
 import firebase from "firebase/app";
 import { attachCustomCommands } from 'cypress-firebase/lib';
-
-
+import { environment } from '../../../tuning-front/src/environments/dist/out-tsc/environment.dev'
 
 declare global {
   namespace Cypress {
@@ -15,16 +14,15 @@ declare global {
   }
 }
 
-const fbConfig = {
-  projectId: 'tuning-dev',
-};
+firebase.initializeApp(environment.firebase);
 
-firebase.initializeApp(fbConfig);
-
-firebase.firestore().settings({
-  host: Cypress.env('FIRESTORE_EMULATOR_HOST'),
-  ssl: false,
-});
+const firestoreEmulatorHost = Cypress.env("FIRESTORE_EMULATOR_HOST");
+if (firestoreEmulatorHost) {
+  firebase.firestore().settings({
+    host: firestoreEmulatorHost,
+    ssl: false,
+  });
+}
 
 attachCustomCommands({ Cypress, cy, firebase });
 
