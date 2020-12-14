@@ -6,13 +6,13 @@ export const environment = {
   production: false,
   mode: 'local',
   firebase: {
-    apiKey: 'AIzaSyBFxCfuCLJzrjkaJmK20tn3Vfzen6ZLVoQ',
+    apiKey: 'apikey',
     authDomain: 'tuning-dev.firebaseapp.com',
     projectId: 'tuning-dev',
     storageBucket: 'tuning-dev.appspot.com',
-    messagingSenderId: '55942996988',
-    appId: '1:55942996988:web:e3608f0a0043e9fae94879',
-    measurementId: 'G-BQXGZB0X0Z'
+    messagingSenderId: 'messagingSenderId',
+    appId: 'appId',
+    measurementId: 'measurementId'
   }
 };
 
