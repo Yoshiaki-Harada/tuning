@@ -18,6 +18,7 @@ jobs:
     runs-on: ubuntu-20.04
     needs: deploy-for-e2e
     steps:
+      - uses: actions/checkout@master
       - name: Install dependencies
         uses: cypress-io/github-action@v1
         with:
