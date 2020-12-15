@@ -18,10 +18,16 @@ jobs:
     runs-on: ubuntu-20.04
     needs: deploy-for-e2e
     steps:
+      - name: Install dependencies
+        uses: cypress-io/github-action@v1
+        with:
+          runTests: false
+      - run: yarn lint
       - name: Cypress Run
         uses: cypress-io/github-action@v1
         with:
           working-directory: ./e2e
+          install: false
           group: "E2E Tests"
           start: npm run cypress:run
           wait-on: https://tuning-dev.web.app/
