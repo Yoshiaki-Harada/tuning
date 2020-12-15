@@ -19,17 +19,10 @@ jobs:
     needs: deploy-for-e2e
     steps:
       - uses: actions/checkout@master
-      - name: Install dependencies
-        uses: cypress-io/github-action@v1
-        with:
-          runTests: false
-      - run: yarn lint
       - name: Cypress Run
         uses: cypress-io/github-action@v1
         with:
-          working-directory: ./e2e
-          install: false
-          group: "E2E Tests"
+          working-directory: e2e
           start: npm run cypress:run
           wait-on: https://tuning-dev.web.app/
         env:
