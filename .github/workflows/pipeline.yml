@@ -17,12 +17,11 @@ jobs:
   execute-e2e:
     runs-on: ubuntu-20.04
     needs: deploy-for-e2e
-    env:
-      working-directory: ./e2e
     steps:
       - name: Cypress Run
         uses: cypress-io/github-action@v1
         with:
+          project: ./e2e
           group: "E2E Tests"
           start: npm run cypress:run
           wait-on: https://tuning-dev.web.app/
