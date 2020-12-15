@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "tuning-dev": {
+      "hosting": {
+        "tuning-front": [
+          "tuning-dev"
+        ]
+      }
+    }
+  }
+}
