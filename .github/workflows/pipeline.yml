@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-20.04
     needs: deploy-for-e2e
     env:
-      working-directory: './e2e'
+      working-directory: ./e2e
     steps:
       - name: Cypress Run
         uses: cypress-io/github-action@v1
