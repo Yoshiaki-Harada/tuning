@@ -1,0 +1,34 @@
+name: tuning-e2e-pipeline
+on: [push]
+jobs:
+  deploy-for-e2e:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+      - name: Build and Deploy to tuning-dev
+        run: ./build_and_deploy.sh dev
+        shell: bash
+        working-directory: ./enviroments/firesbase
+  execute-e2e:
+    runs-on: ubuntu-20.04
+    needs: deploy-for-e2e
+    env:
+      working-directory: './e2e'
+    steps:
+      - name: Cypress Run
+        uses: cypress-io/github-action@v1
+        with:
+          group: "E2E Tests"
+          start: npm run cypress:run
+          wait-on: https://tuning-dev.web.app/
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          # UID of User to login as during tests
+          CYPRESS_TEST_UID: ${{ secrets.TEST_UID }}
+          # Service Account (used for creating custom auth tokens)
+          SERVICE_ACCOUNT: ${{ secrets.SERVICE_ACCOUNT }}
+          # Branch settings
+          GITHUB_HEAD_REF: ${{ github.head_ref }}
+          GITHUB_REF: ${{ github.ref }}
