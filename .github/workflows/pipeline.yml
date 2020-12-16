@@ -35,7 +35,7 @@ jobs:
           # UID of User to login as during tests
           CYPRESS_TEST_UID: ${{ secrets.TEST_UID }}
           # Service Account (used for creating custom auth tokens)
-          SERVICE_ACCOUNT: secrets/serviceAccount.json
+          SERVICE_ACCOUNT: "$HOME/secrets/serviceAccount.json"
           FIREBASE_TOKEN: ${{ secrets.SERVICE_ACCOUNT }}
           GCLOUD_PROJECT: tuning-dev
           # Branch settings
