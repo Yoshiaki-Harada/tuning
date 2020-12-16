@@ -19,10 +19,28 @@ jobs:
     needs: deploy-for-e2e
     steps:
       - uses: actions/checkout@master
+      - name: Install Dependencies
+        uses: cypress-io/github-action@v2
+        with:
+          # just perform install
+          runTests: false
+          working-directory: e2e
+      - name: Build Test Environment Config
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          TEST_UID: ${{ secrets.TEST_UID }}
+          SERVICE_ACCOUNT: ${{ secrets.SERVICE_ACCOUNT }}
+          GITHUB_HEAD_REF: ${{ github.head_ref }}
+          GITHUB_REF: ${{ github.ref }}
+        run: |
+          $(npm bin)/cypress-firebase createTestEnvFile $TEST_EN
+        working-directory: ./e2e
+
       - name: Cypress Run
         uses: cypress-io/github-action@v2
         with:
           working-directory: e2e
+          intall: false
           start: npm run cypress:run
           wait-on: https://tuning-dev.web.app/
         env:
