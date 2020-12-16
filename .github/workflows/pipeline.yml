@@ -32,6 +32,7 @@ jobs:
           working-directory: e2e
           start: npm run cypress:run
           wait-on: https://tuning-dev.web.app/
+          record: true
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           # UID of User to login as during tests
