@@ -23,7 +23,7 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           working-directory: e2e
-          start: npm run cypress:ci
+          start: npm run cypress:run
           wait-on: https://tuning-dev.web.app/
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
