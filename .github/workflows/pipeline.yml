@@ -31,6 +31,7 @@ jobs:
           CYPRESS_TEST_UID: ${{ secrets.TEST_UID }}
           # Service Account (used for creating custom auth tokens)
           SERVICE_ACCOUNT: ${{ secrets.SERVICE_ACCOUNT }}
+          GCLOUD_PROJECT: tuning-dev
           # Branch settings
           GITHUB_HEAD_REF: ${{ github.head_ref }}
           GITHUB_REF: ${{ github.ref }}
