@@ -7,7 +7,7 @@
     "emulators": "firebase emulators:start --only firestore",
     "test": "echo \"Error: no test specified\" && exit 1",
     "cypress:open": "cypress open",
-    "cypress:ci": "cypress run",
+    "cypress:ci": "cross-env SERVICE_ACCOUNT=${SERVICE_ACCOUNT} cypress run",
     "test:open": "cross-env CYPRESS_baseUrl=http://localhost:4200 GCLOUD_PROJECT=tuning-dev cypress open",
     "test:emulate": "cross-env FIRESTORE_EMULATOR_HOST=\"localhost:$(cat firebase.json | jq .emulators.firestore.port)\" GCLOUD_PROJECT=tuning-dev yarn test:open",
     "build": "tsc",
