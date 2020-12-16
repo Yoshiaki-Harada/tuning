@@ -25,9 +25,7 @@ jobs:
         env:
           LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PASSPHRASE }}
       - name: confirm secret
-        run: |
-          cd /github/workspace/secrets
-          ls
+        run: mv $HOME/secrets/serviceAccount.json ./e2e
       - name: Cypress Run
         uses: cypress-io/github-action@v2
         with:
@@ -39,7 +37,7 @@ jobs:
           # UID of User to login as during tests
           CYPRESS_TEST_UID: ${{ secrets.TEST_UID }}
           # Service Account (used for creating custom auth tokens)
-          SERVICE_ACCOUNT: /github/workspace/secrets/serviceAccount.json
+          # SERVICE_ACCOUNT: /github/workspace/secrets/serviceAccount.json
           FIREBASE_TOKEN: ${{ secrets.SERVICE_ACCOUNT }}
           GCLOUD_PROJECT: tuning-dev
           # Branch settings
