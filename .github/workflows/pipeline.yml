@@ -26,12 +26,12 @@ jobs:
           start: npm run cypress:run
           wait-on: https://tuning-dev.web.app/
         env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           # UID of User to login as during tests
           CYPRESS_TEST_UID: ${{ secrets.TEST_UID }}
           # Service Account (used for creating custom auth tokens)
           # SERVICE_ACCOUNT: ${{ secrets.SERVICE_ACCOUNT }}
-          FIREBASE_TOKEN: ${{ secrets.SERVICE_ACCOUNT }}
           GCLOUD_PROJECT: tuning-dev
           # Branch settings
           GITHUB_HEAD_REF: ${{ github.head_ref }}
