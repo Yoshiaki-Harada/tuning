@@ -13,7 +13,8 @@ declare global {
     }
   }
 }
-
+console.log('firebase config...')
+console.log(environment.firebase)
 firebase.initializeApp(environment.firebase);
 
 const firestoreEmulatorHost = Cypress.env("FIRESTORE_EMULATOR_HOST");
