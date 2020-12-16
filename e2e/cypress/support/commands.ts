@@ -3,7 +3,6 @@ import "firebase/database";
 import "firebase/firestore";
 import firebase from "firebase/app";
 import { attachCustomCommands } from 'cypress-firebase/lib';
-import { environment } from '../../../tuning-front/src/environments/dist/out-tsc/environment.dev'
 
 declare global {
   namespace Cypress {
@@ -13,9 +12,16 @@ declare global {
     }
   }
 }
-console.log('firebase config...')
-console.log(environment.firebase)
-firebase.initializeApp(environment.firebase);
+
+firebase.initializeApp({
+  apiKey: 'apikey',
+  authDomain: 'tuning-dev.firebaseapp.com',
+  projectId: 'tuning-dev',
+  storageBucket: 'tuning-dev.appspot.com',
+  messagingSenderId: 'messagingSenderId',
+  appId: 'appId',
+  measurementId: 'measurementId'
+});
 
 const firestoreEmulatorHost = Cypress.env("FIRESTORE_EMULATOR_HOST");
 if (firestoreEmulatorHost) {
