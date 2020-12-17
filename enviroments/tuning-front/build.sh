@@ -12,6 +12,7 @@ echo "copy project.."
 cp -R "${project_root}/tuning-front" "${cwd}/${src}"
 cd "${cwd}/${src}"
 rm -rf dist/
+ls src/environments
 
 echo "build project.."
 npm install -g @angular/cli@11.0.1
