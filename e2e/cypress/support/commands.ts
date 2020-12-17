@@ -3,6 +3,7 @@ import "firebase/database";
 import "firebase/firestore";
 import firebase from "firebase/app";
 import { attachCustomCommands } from 'cypress-firebase/lib';
+import { clearPostsData, insertPostsData } from "./setup";
 
 declare global {
   namespace Cypress {
@@ -34,8 +35,8 @@ if (firestoreEmulatorHost) {
 attachCustomCommands({ Cypress, cy, firebase });
 
 before(() => {
-  console.log('before test')
-  cy.callFirestore("set", "comments/TEST0001", { content: 'test comment' });
+  clearPostsData();
+  insertPostsData();
 });
 
 export { }
