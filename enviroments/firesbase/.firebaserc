@@ -2,6 +2,7 @@
   "projects": {
     "default": "tuning-dev",
     "production": "tuning-a617f",
-    "dev": "tuning-dev"
+    "dev": "tuning-dev",
+    "staging": "tuning-staging"
   }
 }
