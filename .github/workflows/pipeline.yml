@@ -45,8 +45,6 @@ jobs:
           # Branch settings
           GITHUB_HEAD_REF: ${{ github.head_ref }}
           GITHUB_REF: ${{ github.ref }}
-      - name: test
-        run: exit 1
 
   deploy-to-staging:
     runs-on: ubuntu-20.04
