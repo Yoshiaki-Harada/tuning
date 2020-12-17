@@ -29,6 +29,9 @@ jobs:
       - uses: actions/checkout@master
       - name: Decrypt secret
         run: ./decrypt_secret.sh serviceAccount.json
+        working-directory: ./.github/scripts
+        env:
+          LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PASSPHRASE }}
       - name: Move secret
         run: mv $HOME/secrets/serviceAccount.json ./e2e
       - name: Cypress Run
