@@ -16,7 +16,6 @@ rm -rf dist/
 echo "build project.."
 npm install -g @angular/cli@11.0.1
 npm install
-npm audit fix
 ng build -c "${env}"
 
 echo "copy output to firebase public.."
