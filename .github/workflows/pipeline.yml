@@ -1,8 +1,27 @@
 name: tuning-e2e-pipeline
 on: [push]
 jobs:
+  create-secret:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@master
+      - name: Decrypt secret
+        run: |
+          ./decrypt_secret.sh serviceAccount.json
+          ./decrypt_secret.sh environment.dev.ts
+          ./decrypt_secret.sh environment.staging.ts
+        working-directory: ./.github/scripts
+        env:
+          LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PASSPHRASE }}
+      - name: Move secret
+        run: |
+          mv $HOME/secrets/serviceAccount.json ./e2e
+          mv $HOME/secrets/environment.dev.ts ./tuning-front/src/environments
+          mv $HOME/secrets/environment.staging.ts ./tuning-front/src/environments
+
   deploy-to-dev-for-e2e:
     runs-on: ubuntu-20.04
+    needs: create-secret
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
@@ -20,13 +39,6 @@ jobs:
     needs: deploy-to-dev-for-e2e
     steps:
       - uses: actions/checkout@master
-      - name: Decrypt secret
-        run: ./decrypt_secret.sh
-        working-directory: ./.github/scripts
-        env:
-          LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PASSPHRASE }}
-      - name: Move secret
-        run: mv $HOME/secrets/serviceAccount.json ./e2e
       - name: Cypress Run
         uses: cypress-io/github-action@v2
         with:
