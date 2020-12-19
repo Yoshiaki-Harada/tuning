@@ -8,10 +8,11 @@ import { initialState, postListFeatureKey, postListReducer } from './state/post-
 import { EffectsModule } from '@ngrx/effects';
 import { PostListEffects } from './state/post-list.effect';
 import { PostListFacade as PostListFacade } from './state/post-list.facade';
+import { PostItemComponent } from './post-item/post-item.component';
 
 
 @NgModule({
-  declarations: [PostListComponent],
+  declarations: [PostListComponent, PostItemComponent],
   imports: [
     CommonModule,
     PostListRoutingModule,

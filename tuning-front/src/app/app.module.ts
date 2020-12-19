@@ -39,7 +39,6 @@ export class AppModule { }
 const fireStoreFactory = (db: AngularFirestore) => {
   // localでfirestore emulatorを使う為に設定を上書きする
   if (environment.mode === 'local') {
-    console.log('use local firestore emulator');
     db.firestore.settings({
       host: 'localhost:8080',
       ssl: false,
