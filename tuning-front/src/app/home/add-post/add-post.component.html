@@ -1,0 +1,19 @@
+<div class="row">
+    <div class="col-md-12">
+        <form class="post-form" [formGroup]="postForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="text" formControlName="content" class="form-control" placeholder="投稿を入力して下さい">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <button type="submit" class="add-post btn-sm btn-secondary float-md-right"
+                        [disabled]="!postForm.valid">
+                        POST
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

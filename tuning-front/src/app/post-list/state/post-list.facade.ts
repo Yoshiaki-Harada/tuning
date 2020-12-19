@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { PostListState } from './post-list.reducer';
+import { Post, PostListState } from './post-list.reducer';
 import { getPosts } from './post-list.selectors';
 import * as PostListActions from './post-list.action';
 
@@ -13,5 +13,9 @@ export class PostListFacade {
 
     setPosts(): void {
         this.store.dispatch(PostListActions.loadPosts());
+    }
+
+    addPost(post: Post): void {
+        this.store.dispatch(PostListActions.addPost({ post }));
     }
 }

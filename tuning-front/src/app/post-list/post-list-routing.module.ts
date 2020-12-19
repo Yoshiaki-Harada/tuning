@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { PostListComponent } from './post-list.component';
 
-const routes: Routes = [{ path: '', component: PostListComponent }];
+const routes: Routes = [{ path: '', component: PostListComponent, pathMatch: 'full' }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

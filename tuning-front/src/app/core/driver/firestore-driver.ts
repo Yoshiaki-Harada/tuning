@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, DocumentReference } from '@angular/fire/firestore';
+import { toUnicode } from 'punycode';
 import { Observable } from 'rxjs';
+import { Post } from 'src/app/post-list/state/post-list.reducer';
 
 type PostDto = { content: string };
 
@@ -13,6 +15,10 @@ export class FirestoreDriver {
 
     loadPosts(): Observable<PostDto[]> {
         return this.db.collection<PostDto>('posts').valueChanges();
+    }
+
+    addPost(post: Post): Promise<DocumentReference<PostDto>> {
+        return this.db.collection<PostDto>('posts').add(post);
     }
 }
 

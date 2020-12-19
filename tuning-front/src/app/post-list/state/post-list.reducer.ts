@@ -20,7 +20,8 @@ export const initialState: Posts = { items: [] };
 const reducer = createReducer(
     initialState,
     on(PostListActions.loadPosts, (state, actions) => ({ ...state })),
-    on(PostListActions.loadPostsSuccess, (state, action) => ({ ...state, items: [...action.posts] }))
+    on(PostListActions.loadPostsSuccess, (state, action) => ({ ...state, items: [...action.posts] })),
+    on(PostListActions.addPostSuccess, (state, action) => ({ ...state }))
 );
 
 export const postListReducer = (state: Posts, action: Action): Posts => reducer(state, action);
