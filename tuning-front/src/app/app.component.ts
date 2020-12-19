@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { FirestoreDriver } from './firestore-driver';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,11 +7,9 @@ import { FirestoreDriver } from './firestore-driver';
 })
 export class AppComponent implements OnInit {
   title = 'tuning-front';
-  comments: Observable<Comment[]>;
 
-  constructor(private store: FirestoreDriver) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.comments = this.store.getComments();
   }
 }

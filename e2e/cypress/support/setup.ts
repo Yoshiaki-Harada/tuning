@@ -15,7 +15,7 @@ export const insertPostsData = () => {
                     .then(post => {
                         return post;
                     }).then(post => {
-                        cy.callFirestore('set', `posts/${f}`, post);
+                        cy.callFirestore('set', `posts/${f.replace('.json', '')}`, post);
                     });
             });
         })

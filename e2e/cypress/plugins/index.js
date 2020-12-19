@@ -7,7 +7,6 @@ module.exports = (on, config) => {
 
   on('file:preprocessor', cypressTypeScriptPreprocessor)
   const extendedConfig = cypressFirebasePlugin(on, config, admin);
-
   // Add other plugins/tasks such as code coverage here
   on('task', {
     getFileNames (directoryPath) {

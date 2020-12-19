@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "emulators": "firebase emulators:start --only firestore",
+    "emulators": "firebase emulators:start",
     "test": "echo \"Error: no test specified\" && exit 1",
     "cypress:open": "cypress open",
     "cypress:run": "cross-env GCLOUD_PROJECT=tuning-dev cypress run",
-    "test:open": "cross-env CYPRESS_baseUrl=http://localhost:4200 GCLOUD_PROJECT=tuning-dev cypress open",
-    "test:emulate": "cross-env FIRESTORE_EMULATOR_HOST=\"localhost:$(cat firebase.json | jq .emulators.firestore.port)\" GCLOUD_PROJECT=tuning-dev yarn test:open",
+    "test:open": "cross-env FIRESTORE_EMULATOR_HOST=\"localhost:$(cat firebase.json | jq .emulators.firestore.port)\" CYPRESS_baseUrl=http://localhost:4200 GCLOUD_PROJECT=tuning-dev cypress open",
+    "test:emulate": "cross-env FIRESTORE_EMULATOR_HOST=\"localhost:$(cat firebase.json | jq .emulators.firestore.port)\" CYPRESS_baseUrl=http://localhost:4200 GCLOUD_PROJECT=tuning-dev yarn test:open",
     "build": "tsc",
     "lint": "tsc --project tsconfig.lint.json",
     "lint:cypress": "tsc --project cypress/tsconfig.json"
@@ -28,6 +28,7 @@
   "devDependencies": {
     "cross-env": "^7.0.3",
     "cypress": "^6.1.0",
+    "cypress-commands": "^1.1.0",
     "cypress-firebase": "^1.6.0-alpha",
     "firebase-admin": "^9.4.1",
     "typescript": "^4.1.2"
