@@ -26,8 +26,7 @@
                         "assets": ["src/favicon.ico", "src/assets"],
                         "styles": [
                             "src/styles.scss",
-                            "node_modules/bootstrap/dist/css/bootstrap.min.css",
-                            "node_modules/firebaseui/dist/firebaseui.css"
+                            "node_modules/bootstrap/dist/css/bootstrap.min.css"
                         ],
                         "scripts": []
                     },
@@ -145,8 +144,7 @@
                         "assets": ["src/favicon.ico", "src/assets"],
                         "styles": [
                             "src/styles.scss",
-                            "node_modules/bootstrap/dist/css/bootstrap.min.css",
-                            "node_modules/firebaseui/dist/firebaseui.css"
+                            "node_modules/bootstrap/dist/css/bootstrap.min.css"
                         ],
                         "scripts": []
                     }
