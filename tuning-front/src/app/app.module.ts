@@ -12,7 +12,8 @@ import { Effect, EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { HeaderComponent } from './header/header.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { AuthModule } from './auth/auth.module';
+import { USE_EMULATOR as USE_AUTH_EMULATOR } from '@angular/fire/auth';
 
 @NgModule({
   declarations: [
@@ -28,12 +29,14 @@ import { ReactiveFormsModule } from '@angular/forms';
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
+    AuthModule,
   ],
   providers: [
     {
       provide: FirestoreDriver, useFactory: (db: AngularFirestore) => fireStoreFactory(db),
       deps: [AngularFirestore]
-    }
+    },
+    { provide: USE_AUTH_EMULATOR, useValue: environment.useEmulators ? ['localhost', 9099] : undefined },
   ],
   bootstrap: [AppComponent]
 })

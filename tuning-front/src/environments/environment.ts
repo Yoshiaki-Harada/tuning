@@ -5,8 +5,9 @@
 export const environment = {
   production: false,
   mode: 'local',
+  useEmulators: true,
   firebase: {
-    apiKey: 'apikey',
+    apiKey: 'tuning-dev',
     authDomain: 'tuning-dev.firebaseapp.com',
     projectId: 'tuning-dev',
     storageBucket: 'tuning-dev.appspot.com',

@@ -26,7 +26,8 @@
                         "assets": ["src/favicon.ico", "src/assets"],
                         "styles": [
                             "src/styles.scss",
-                            "node_modules/bootstrap/dist/css/bootstrap.min.css"
+                            "node_modules/bootstrap/dist/css/bootstrap.min.css",
+                            "node_modules/firebaseui/dist/firebaseui.css"
                         ],
                         "scripts": []
                     },
@@ -142,7 +143,11 @@
                         "tsConfig": "tsconfig.spec.json",
                         "karmaConfig": "karma.conf.js",
                         "assets": ["src/favicon.ico", "src/assets"],
-                        "styles": ["src/styles.scss"],
+                        "styles": [
+                            "src/styles.scss",
+                            "node_modules/bootstrap/dist/css/bootstrap.min.css",
+                            "node_modules/firebaseui/dist/firebaseui.css"
+                        ],
                         "scripts": []
                     }
                 },
