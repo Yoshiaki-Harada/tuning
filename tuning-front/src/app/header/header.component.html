@@ -3,8 +3,18 @@
         <a class="navbar-brand" href="#"> TUNING </a>
         <div class="collapse navbar-collapse" id="collapsibleNavId">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li routerLinkActive="active" class="nav-item"> <a class="nav-link home" routerLink="/"> Home </a> </li>
-                <li class="nav-item"> <a class="nav-link notification" routerLink="/"> 通知 </a> </li>
+                <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-item">
+                    <a class="nav-link home" routerLink="/"> Home </a>
+                </li>
+                <li routerLinkActive="active" class="nav-item"> <a class="nav-link notification"
+                        routerLink="/notification"> 通知 </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mt-2 mt-lg-0">
+                <li routerLinkActive="active" class="nav-item"> <a class="nav-link login" routerLink="/login"> Login
+                    </a> </li>
+                <li routerLinkActive="active" class="nav-item"> <a class="nav-link register" routerLink="/register">
+                        Register </a> </li>
             </ul>
         </div>
     </nav>

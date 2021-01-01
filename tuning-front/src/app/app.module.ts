@@ -14,6 +14,10 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { HeaderComponent } from './header/header.component';
 import { AuthModule } from './auth/auth.module';
 import { USE_EMULATOR as USE_AUTH_EMULATOR } from '@angular/fire/auth';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
+import { SETTINGS as FIRESTORE_SETTINGS } from '@angular/fire/firestore';
+import { USE_EMULATOR as USE_FIRESTORE_EMULATOR } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -30,26 +34,18 @@ import { USE_EMULATOR as USE_AUTH_EMULATOR } from '@angular/fire/auth';
     EffectsModule.forRoot([]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     AuthModule,
+    BrowserAnimationsModule,
+    NgxAuthFirebaseUIModule.forRoot(environment.firebase),
   ],
   providers: [
     {
-      provide: FirestoreDriver, useFactory: (db: AngularFirestore) => fireStoreFactory(db),
-      deps: [AngularFirestore]
+      provide: FirestoreDriver
     },
     { provide: USE_AUTH_EMULATOR, useValue: environment.useEmulators ? ['localhost', 9099] : undefined },
+    { provide: USE_FIRESTORE_EMULATOR, useValue: environment.useEmulators ? ['localhost', 8080] : undefined },
+    { provide: FIRESTORE_SETTINGS, useValue: environment.useEmulators ? { host: 'localhost:8080', ssl: false } : {} },
+
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-
-const fireStoreFactory = (db: AngularFirestore) => {
-  // localでfirestore emulatorを使う為に設定を上書きする
-  if (environment.mode === 'local') {
-    db.firestore.settings({
-      host: 'localhost:8080',
-      ssl: false,
-      experimentalForceLongPolling: true
-    });
-  };
-  return new FirestoreDriver(db);
-};
