@@ -3,7 +3,10 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home.component';
 
-const routes: Routes = [{ path: '', component: HomeComponent }];
+import { AngularFireAuthGuard, hasCustomClaim, redirectLoggedInTo, canActivate, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
+
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
+const routes: Routes = [{ path: '', component: HomeComponent, pathMatch: 'ful', ...canActivate(redirectUnauthorizedToLogin) }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

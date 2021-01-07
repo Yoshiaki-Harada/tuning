@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class AuthFacade {
     constructor(private store: Store<AuthState>) { }
 
-    login(user: User): void {
+    loginSuccess(user: User): void {
         this.store.dispatch(AuthActions.loadLoginSuccess({ user }));
     }
 }

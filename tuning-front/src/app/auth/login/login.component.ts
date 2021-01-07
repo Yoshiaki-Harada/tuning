@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthFacade } from '../state/auth.facade';
+import { User } from '../state/auth.reducer';
 
 @Component({
   selector: 'app-login',
@@ -7,13 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authFacade: AuthFacade) { }
 
   ngOnInit(): void {
   }
 
-  onSuccess(user) {
+  onSuccess(user: User) {
     console.log(user);
+    this.authFacade.loginSuccess(user);
   }
 
   onError(event) {

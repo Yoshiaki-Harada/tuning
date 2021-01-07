@@ -14,19 +14,17 @@ export interface User {
 
 export interface Auth {
   user: User;
-  loggedIn: boolean;
 }
 
 export interface AuthState {
   readonly [authFeatureKey]: Auth;
 }
 
-export const initialState: Auth = { user: null, loggedIn: false };
+export const initialState: Auth = { user: null };
 
 
 export const reducer = createReducer(
   initialState,
-  on(AuthActions.loadLoginSuccess, (state, action) => ({ ...state, loggedIn: true, user: action.user })),
   on(AuthActions.loadLoginFailure, (state, action) => ({ ...state })),
   on(AuthActions.loadRegisterSuccess, (state, action) => ({ ...state })),
   on(AuthActions.loadRegisterFailure, (state, action) => ({ ...state })),
