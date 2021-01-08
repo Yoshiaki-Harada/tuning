@@ -58,3 +58,15 @@ Outputs:
     HelloWorldFunctionIamRole:
         Description: "Implicit IAM Role created for Hello World function"
         Value: !GetAtt HelloWorldFunctionRole.Arn
+
+    SlackFunctionApi:
+        Description: "API Gateway endpoint URL for Prod stage for Slack function for anonymous command"
+        Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/anonymous/"
+
+    SlackFunction:
+        Description: "Slack Lambda Function ARN"
+        Value: !GetAtt SlackFunction.Arn
+
+    SlackFunctionIamRole:
+        Description: "Implicit IAM Role created for Slack function"
+        Value: !GetAtt SlackFunctionRole.Arn

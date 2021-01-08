@@ -19,6 +19,7 @@ import * as aws from 'aws-sdk';
 
 export async function anonymousHandler(event, context, callback) {
     callback(null, { statusCode: 200, body: '投稿を受付ました' })
+    console.log('[START] ANONYMOUS POST');
     let response;
     let token = process.env.SLACK_TOKEN;
     if (!token) {
@@ -32,6 +33,7 @@ export async function anonymousHandler(event, context, callback) {
     const slackRequest = parseSlackRequest(query)
     try {
         await usecase.run(slackRequest.text, new ChannelId(slackRequest.channel_id), null)
+        console.log('[END] ANONYMOUS POST');
         response = {
             'statusCode': 200,
             'body': '匿名による投稿がされました'

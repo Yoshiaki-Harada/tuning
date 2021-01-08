@@ -1,0 +1,10 @@
+version = 0.1
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "anonymous-command"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-1rb7xf5cltujs"
+s3_prefix = "anonymous-command"
+region = "us-east-1"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
