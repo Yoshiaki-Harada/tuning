@@ -1,8 +1,5 @@
-import './services/example.service';
-import axios from 'axios';
 const url = 'http://checkip.amazonaws.com/';
 let response;
-
 /**
  *
  * Event doc: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html#api-gateway-simple-proxy-for-lambda-input-format
@@ -37,21 +34,13 @@ let response;
  * @returns {Object} object.body - JSON Payload to be returned
  *
  */
-export async function helloHandler(event: AwsEvent, context) {
-    try {
-        const ret = await axios(url);
-        response = {
+export async function helloHandler(event , context, callback) {
+    response = {
             'statusCode': 200,
             'body': JSON.stringify({
                 message: 'hello world',
-                location: ret.data.trim()
             })
         }
-    } catch (err) {
-        console.log(err);
-        return err;
-    }
-
     return response
 };
 

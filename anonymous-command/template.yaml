@@ -17,6 +17,8 @@ Resources:
             CodeUri: dist/
             Handler: app.helloHandler
             Runtime: nodejs12.x
+            Policies:
+                - CloudWatchPutMetricPolicy: {}
             Environment: # More info about Env Vars: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#environment-object
                 Variables:
                     PARAM1: VALUE
