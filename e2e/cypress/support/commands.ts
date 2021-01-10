@@ -3,7 +3,7 @@ import "firebase/database";
 import "firebase/firestore";
 import firebase from "firebase/app";
 import { attachCustomCommands } from 'cypress-firebase/lib';
-import { clearPostsData, insertPostsData } from "./setup";
+import { clearPostsData, clearUsers, createUsers, insertPostsData } from "./setup";
 
 declare global {
   namespace Cypress {
@@ -30,6 +30,7 @@ if (firestoreEmulatorHost) {
     host: firestoreEmulatorHost,
     ssl: false,
   });
+
 }
 
 attachCustomCommands({ Cypress, cy, firebase });
@@ -37,6 +38,8 @@ attachCustomCommands({ Cypress, cy, firebase });
 before(() => {
   clearPostsData();
   insertPostsData();
+  clearUsers();
+  createUsers();
 });
 
 export { }

@@ -9,9 +9,27 @@ module.exports = (on, config) => {
   const extendedConfig = cypressFirebasePlugin(on, config, admin);
   // Add other plugins/tasks such as code coverage here
   on('task', {
-    getFileNames (directoryPath) {
+    getFileNames(directoryPath) {
       return fs.readdirSync(directoryPath)
     }
-  })
+  });
+  on('task', {
+    createUser(user) {
+      return admin.auth().createUser(user);
+    }
+  });
+  on('task', {
+    clearUser(email) {
+      return admin.auth().getUserByEmail(email)
+        .then(user => {
+          admin.auth().deleteUser(user.uid)
+          return user.uid
+        })
+        .catch((error) => {
+          console.log(error)
+          return null;
+        })
+    }
+  });
   return extendedConfig;
 };

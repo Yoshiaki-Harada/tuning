@@ -1,4 +1,4 @@
-import { Post } from "./model";
+import { Post, User } from "./model";
 
 const resoucePath = 'cypress/resources';
 export const clearPostsData = () => {
@@ -13,10 +13,33 @@ export const insertPostsData = () => {
             (fileNames as string[]).forEach((f) => {
                 cy.readFile<Post>(`${resoucePath}/posts/list/${f}`)
                     .then(post => {
-                        return post;
-                    }).then(post => {
                         cy.callFirestore('set', `posts/${f.replace('.json', '')}`, post);
                     });
             });
         })
+}
+
+export const createUsers = () => {
+    console.log('Create users..')
+    cy.task('getFileNames', `${resoucePath}/users`).then(fileNames => {
+        (fileNames as string[]).forEach((f) => {
+            cy.readFile<User>(`${resoucePath}/users/${f}`)
+                .then(user => {
+                    cy.task('createUser', user).then(_ => { })
+                });
+        })
+    })
+}
+
+// resources直下のuserしかclearできない
+export const clearUsers = () => {
+    console.log('Clear users..')
+    cy.task('getFileNames', `${resoucePath}/users`).then(fileNames => {
+        (fileNames as string[]).forEach((f) => {
+            cy.readFile<User>(`${resoucePath}/users/${f}`)
+                .then(user => {
+                    cy.task('clearUser', user.email).then(_ => { })
+                });
+        })
+    })
 }
