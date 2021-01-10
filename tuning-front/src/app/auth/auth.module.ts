@@ -8,8 +8,11 @@ import { LoginComponent } from './login/login.component';
 import { AuthFacade } from './state/auth.facade';
 import { environment } from 'src/environments/environment';
 import { AngularFireAuthGuard, hasCustomClaim, redirectLoggedInTo, canActivate, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
+import { StoreModule } from '@ngrx/store';
+import { authFeatureKey, authReducer, initialState } from './state/auth.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffcts } from './state/auth.effects';
 
-const redirectLoggedInToHome = () => redirectLoggedInTo(['../']);
 @NgModule({
   declarations: [RegisterComponent, LoginComponent],
   imports: [
@@ -17,27 +20,24 @@ const redirectLoggedInToHome = () => redirectLoggedInTo(['../']);
     FormsModule,
     NgxAuthFirebaseUIModule.forRoot({
       configFactory: environment.firebase,
+      appNameFactory: () => 'TUNING',
       config: {
-        authGuardFallbackURL: '/login',
-        authGuardLoggedInURL: '',
-        toastMessageOnAuthSuccess: false
+        toastMessageOnAuthSuccess: false, // whether to open/show a snackbar message on auth success - default : true
       }
     }),
+    StoreModule.forFeature(authFeatureKey, authReducer, { initialState }),
+    EffectsModule.forFeature([AuthEffcts]),
     RouterModule.forChild([
       {
         path: 'login',
-        pathMatch: 'full',
         component: LoginComponent,
-        ...canActivate(redirectLoggedInToHome)
       },
       {
         path: 'register',
-        pathMatch: 'full',
         component: RegisterComponent,
-        ...canActivate(redirectLoggedInToHome)
       },
     ]),
   ],
-  providers: [AuthFacade]
+  providers: [AuthFacade, AuthFacade]
 })
 export class AuthModule { }

@@ -14,8 +14,16 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSuccess(user: User) {
-    console.log(user);
+  onSuccess(event) {
+    console.log('login success');
+    const user: User = {
+      providerId: event.providerId,
+      displayName: event.displayName,
+      email: event.email,
+      photoURL: event.photoURL,
+      uid: event.uid,
+      refreshToken: event.refreshToken
+    };
     this.authFacade.loginSuccess(user);
   }
 

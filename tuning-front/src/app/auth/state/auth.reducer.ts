@@ -25,9 +25,10 @@ export const initialState: Auth = { user: null };
 
 export const reducer = createReducer(
   initialState,
-  on(AuthActions.loadLoginFailure, (state, action) => ({ ...state })),
-  on(AuthActions.loadRegisterSuccess, (state, action) => ({ ...state })),
-  on(AuthActions.loadRegisterFailure, (state, action) => ({ ...state })),
+  on(AuthActions.loginFailure, (state, action) => ({ ...state })),
+  on(AuthActions.loginOrAuthSuccessed, (state, action) => ({ ...state, ...action })),
+  on(AuthActions.registerSuccess, (state, action) => ({ ...state })),
+  on(AuthActions.registerFailure, (state, action) => ({ ...state })),
 );
 
 export const authReducer = (state: Auth, action: Action): Auth => reducer(state, action);

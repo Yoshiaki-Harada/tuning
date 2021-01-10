@@ -1,1 +1,2 @@
-<ngx-auth-firebaseui-login [providers]="['google', 'facebook']"></ngx-auth-firebaseui-login>
+<ngx-auth-firebaseui-login (onSuccess)="onSuccess($event)" (onError)="onError($event)"
+    [providers]="['google', 'facebook']"></ngx-auth-firebaseui-login>

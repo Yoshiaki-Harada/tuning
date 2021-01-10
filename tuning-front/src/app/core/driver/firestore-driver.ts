@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, DocumentReference } from '@angular/fire/firestore';
-import { toUnicode } from 'punycode';
 import { Observable } from 'rxjs';
 import { Post } from 'src/app/post-list/state/post-list.reducer';
 
