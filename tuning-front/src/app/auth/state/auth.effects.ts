@@ -14,7 +14,7 @@ export class AuthEffcts {
             console.log('EFFECTS login success');
             console.log(user);
             this.localStorageDriver.setUser(user);
-            this.router.navigate(['/home']);
+            this.router.navigate(['']);
         }),
         map(user => AuthActions.loginOrAuthSuccessed({ user }))
     ));

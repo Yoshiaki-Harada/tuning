@@ -12,6 +12,7 @@ import { StoreModule } from '@ngrx/store';
 import { authFeatureKey, authReducer, initialState } from './state/auth.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffcts } from './state/auth.effects';
+import { AuthRoutingModule } from './auth-routing.module';
 
 @NgModule({
   declarations: [RegisterComponent, LoginComponent],
@@ -27,16 +28,7 @@ import { AuthEffcts } from './state/auth.effects';
     }),
     StoreModule.forFeature(authFeatureKey, authReducer, { initialState }),
     EffectsModule.forFeature([AuthEffcts]),
-    RouterModule.forChild([
-      {
-        path: 'login',
-        component: LoginComponent,
-      },
-      {
-        path: 'register',
-        component: RegisterComponent,
-      },
-    ]),
+    AuthRoutingModule
   ],
   providers: [AuthFacade, AuthFacade]
 })
