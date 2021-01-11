@@ -43,9 +43,22 @@ import { LocalStorageDriver } from './core/driver/local-storage-driver';
     { provide: AuthGuard },
     { provide: LocalStorageDriver },
     { provide: FirestoreDriver },
-    { provide: USE_AUTH_EMULATOR, useValue: environment.useEmulators ? ['localhost', 9099] : undefined },
-    { provide: USE_FIRESTORE_EMULATOR, useValue: environment.useEmulators ? ['localhost', 8080] : undefined },
-    { provide: FIRESTORE_SETTINGS, useValue: environment.useEmulators ? { host: 'localhost:8080', ssl: false } : {} },
+    {
+      provide: USE_AUTH_EMULATOR,
+      useValue: environment.useEmulators ? ['localhost', 9099] : undefined
+    },
+    {
+      provide: USE_FIRESTORE_EMULATOR,
+      useValue: environment.useEmulators ? ['localhost', 8080] : undefined
+    },
+    {
+      provide: FIRESTORE_SETTINGS,
+      useValue: environment.useEmulators ? {
+        host: 'localhost:8080',
+        ssl: false,
+        experimentalForceLongPolling: true
+      } : {}
+    },
 
   ],
   bootstrap: [AppComponent]

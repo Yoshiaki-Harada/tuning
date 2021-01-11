@@ -29,6 +29,7 @@ if (firestoreEmulatorHost) {
   firebase.firestore().settings({
     host: firestoreEmulatorHost,
     ssl: false,
+    experimentalForceLongPolling: true
   });
 
 }
