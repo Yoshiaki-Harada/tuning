@@ -9,7 +9,7 @@
     "cypress:open": "cypress open",
     "cypress:run": "cross-env GCLOUD_PROJECT=tuning-dev cypress run",
     "test:open": "cross-env FIRESTORE_EMULATOR_HOST=\"localhost:$(cat firebase.json | jq .emulators.firestore.port)\" FIREBASE_AUTH_EMULATOR_HOST=\"localhost:$(cat firebase.json | jq .emulators.auth.port)\" CYPRESS_baseUrl=http://localhost:4200 GCLOUD_PROJECT=tuning-dev cypress open",
-    "test:emulate": "cross-env FIRESTORE_EMULATOR_HOST=\"localhost:$(cat firebase.json | jq .emulators.firestore.port)\"  FIREBASE_AUTH_EMULATOR_HOST=\"localhost:$(cat firebase.json | jq .emulators.auth.port)\" CYPRESS_baseUrl=http://localhost:4200 GCLOUD_PROJECT=tuning-dev yarn test:open",
+    "test:emulate": "cross-env FIRESTORE_EMULATOR_HOST=\"localhost:$(cat firebase.json | jq .emulators.firestore.port)\"  FIREBASE_AUTH_EMULATOR_HOST=\"localhost:$(cat firebase.json | jq .emulators.auth.port)\" CYPRESS_baseUrl=http://localhost:4200 GCLOUD_PROJECT=tuning-dev cypress run",
     "build": "tsc",
     "lint": "tsc --project tsconfig.lint.json",
     "lint:cypress": "tsc --project cypress/tsconfig.json"
