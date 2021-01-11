@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Post } from '../state/post-list.reducer';
+import { Post } from '../+state/post-list.reducer';
 
 @Component({
   selector: 'app-post-item',

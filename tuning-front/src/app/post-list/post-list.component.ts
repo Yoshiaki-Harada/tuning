@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { PostListFacade as PostListFacade } from './state/post-list.facade';
-import { Post } from './state/post-list.reducer';
+import { PostListFacade as PostListFacade } from './+state/post-list.facade';
+import { Post } from './+state/post-list.reducer';
 
 @Component({
   selector: 'app-post-list',

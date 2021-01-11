@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, DocumentReference } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { Post } from 'src/app/post-list/state/post-list.reducer';
+import { Post } from 'src/app/post-list/+state/post-list.reducer';
 
 type PostDto = { content: string };
 

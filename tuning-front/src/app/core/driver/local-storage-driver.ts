@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User } from 'src/app/auth/state/auth.reducer';
+import { User } from 'src/app/auth/+state/auth.reducer';
 
 @Injectable()
 export class LocalStorageDriver {

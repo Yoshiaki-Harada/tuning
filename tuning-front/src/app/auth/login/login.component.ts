@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthFacade } from '../state/auth.facade';
-import { User } from '../state/auth.reducer';
+import { AuthFacade } from '../+state/auth.facade';
+import { User } from '../+state/auth.reducer';
 
 @Component({
   selector: 'app-login',
