@@ -24,6 +24,7 @@ module.exports = (on, config) => {
     clearUser(email) {
       return admin.auth().getUserByEmail(email)
         .then(user => {
+          console.log(`delete user: ${user.email}`)
           admin.auth().deleteUser(user.uid)
           return user.uid
         })
