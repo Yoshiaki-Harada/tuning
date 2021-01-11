@@ -12,8 +12,8 @@ describe('ホーム画面', () => {
         cy.get('.header .home').should('be.visible')
     })
     it('投稿の一覧が表示される', () => {
-        cy.get('.posts .post-item .card-title').eq(0).text().should('eq', 'test comment 1')
-        cy.get('.posts .post-item .card-title').eq(1).text().should('eq', 'test comment 2')
+        cy.contains('test comment 1').should('be.visible')
+        cy.contains('test comment 2').should('be.visible')
     })
     it('投稿することができる', () => {
         const content = 'post test content'
