@@ -15,7 +15,9 @@ module.exports = (on, config) => {
   });
   on('task', {
     createUser(user) {
-      return admin.auth().createUser(user);
+      return admin.auth().createUser(user).catch((error) => {
+        console.log(error)
+      });
     }
   });
   on('task', {
