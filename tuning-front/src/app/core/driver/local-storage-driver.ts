@@ -6,4 +6,16 @@ export class LocalStorageDriver {
     setUser(user: User) {
         localStorage.setItem('user', JSON.stringify(user));
     }
+
+    getUser(): User | null {
+        const userJson = localStorage.getItem('user');
+        if (userJson !== null) {
+            return JSON.parse(userJson);
+        }
+        return null;
+    }
+
+    deleteUser(): void {
+        localStorage.removeItem('user');
+    }
 }

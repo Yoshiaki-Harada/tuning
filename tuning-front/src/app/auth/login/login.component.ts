@@ -15,7 +15,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSuccess(event) {
-    console.log('login success');
     const user: User = {
       providerId: event.providerId,
       displayName: event.displayName,

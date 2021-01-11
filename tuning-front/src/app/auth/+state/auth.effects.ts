@@ -11,12 +11,28 @@ export class AuthEffcts {
         ofType(AuthActions.loginSuccess),
         map(action => action.user),
         tap(user => {
-            console.log('EFFECTS login success');
-            console.log(user);
             this.localStorageDriver.setUser(user);
             this.router.navigate(['']);
         }),
         map(user => AuthActions.loginOrAuthSuccessed({ user }))
     ));
+    autoLogin = createEffect(() => this.action$.pipe(
+        ofType(AuthActions.autoLogin),
+        map(action => {
+            const user = this.localStorageDriver.getUser();
+            if (user !== null) {
+                return AuthActions.loginSuccess({ user });
+            }
+            return AuthActions.loginFailure({ error: Error('Failed to Auto login') });
+        })
+    ));
+
+    logout = createEffect(() => this.action$.pipe(
+        ofType(AuthActions.logout),
+        tap(action => {
+            this.localStorageDriver.deleteUser();
+            this.router.navigate(['/login']);
+        })
+    ), { dispatch: false });
     constructor(private action$: Actions, private router: Router, private localStorageDriver: LocalStorageDriver) { }
 }

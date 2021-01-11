@@ -10,11 +10,14 @@
                         routerLink="/notification"> 通知 </a>
                 </li>
             </ul>
-            <ul class="navbar-nav mt-2 mt-lg-0">
+            <ul class="navbar-nav mt-2 mt-lg-0" *ngIf="(isLogin | async) === false">
                 <li routerLinkActive="active" class="nav-item"> <a class="nav-link login" routerLink="/login"> Login
                     </a> </li>
                 <li routerLinkActive="active" class="nav-item"> <a class="nav-link register" routerLink="/register">
                         Register </a> </li>
+            </ul>
+            <ul class="navbar-nav mt-2 mt-lg-0" *ngIf="isLogin | async">
+                <li class="nav-item"> <a class="logout" (click)="onLogout()"> Logout </a> </li>
             </ul>
         </div>
     </nav>

@@ -7,11 +7,6 @@ export const loginSuccess = createAction(
   props<{ user: User }>()
 );
 
-export const loginOrAuthSuccessed = createAction(
-  '[Auth] Login or Auth Successed',
-  props<{ user: User }>()
-);
-
 export const loginFailure = createAction(
   '[Auth] Login Failure',
   props<{ error: any }>()
@@ -25,4 +20,17 @@ export const registerSuccess = createAction(
 export const registerFailure = createAction(
   '[Auth] Register Failure',
   props<{ error: any }>()
+);
+
+export const loginOrAuthSuccessed = createAction(
+  '[Auth] Login or Auth Successed',
+  props<{ user: User }>()
+);
+
+export const autoLogin = createAction(
+  '[Auth] Auto login'
+);
+
+export const logout = createAction(
+  '[Auth] Logout'
 );

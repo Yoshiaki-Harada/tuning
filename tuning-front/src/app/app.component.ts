@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthFacade } from './auth/+state/auth.facade';
 
 @Component({
   selector: 'app-root',
@@ -8,8 +9,9 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
   title = 'tuning-front';
 
-  constructor() { }
+  constructor(private authFacade: AuthFacade) { }
 
   ngOnInit(): void {
+    this.authFacade.autoLogin();
   }
 }
