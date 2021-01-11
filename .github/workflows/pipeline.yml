@@ -41,7 +41,6 @@ jobs:
           browser: chrome
           start: npm run cypress:run
           wait-on: https://tuning-dev.web.app/
-          record: true
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           # UID of User to login as during tests
@@ -53,6 +52,17 @@ jobs:
           # Branch settings
           GITHUB_HEAD_REF: ${{ github.head_ref }}
           GITHUB_REF: ${{ github.ref }}
+      - uses: actions/upload-artifact@v1
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+      # Test run video was always captured, so this action uses "always()" condition
+      - uses: actions/upload-artifact@v1
+        if: failure()
+        with:
+          name: cypress-videos
+          path: cypress/videos
 
   deploy-to-staging:
     runs-on: ubuntu-20.04
