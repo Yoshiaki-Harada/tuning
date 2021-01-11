@@ -44,10 +44,8 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           working-directory: e2e
-          browser: chrome
           start: npm run cypress:run
           wait-on: https://tuning-dev.web.app/
-          record: false
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           # UID of User to login as during tests
