@@ -20,6 +20,10 @@ import { SETTINGS as FIRESTORE_SETTINGS } from '@angular/fire/firestore';
 import { USE_EMULATOR as USE_FIRESTORE_EMULATOR } from '@angular/fire/firestore';
 import { AuthGuard } from './auth/auth.guard';
 import { LocalStorageDriver } from './core/driver/local-storage-driver';
+import { UserPort } from './core/port/user-port';
+import { UserGateway } from './core/gateway/user-gateway';
+import { PostPort } from './core/port/post-port';
+import { PostGateway } from './core/gateway/post-gateway';
 
 @NgModule({
   declarations: [
@@ -43,6 +47,8 @@ import { LocalStorageDriver } from './core/driver/local-storage-driver';
     { provide: AuthGuard },
     { provide: LocalStorageDriver },
     { provide: FirestoreDriver },
+    { provide: UserPort, useClass: UserGateway },
+    { provide: PostPort, useClass: PostGateway },
     {
       provide: USE_AUTH_EMULATOR,
       useValue: environment.useEmulators ? ['localhost', 9099] : undefined

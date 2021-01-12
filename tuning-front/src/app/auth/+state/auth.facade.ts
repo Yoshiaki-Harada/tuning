@@ -3,8 +3,7 @@ import { AuthState, User } from './auth.reducer';
 import * as AuthActions from './auth.actions';
 import { getIsLogin, getUser } from './auth.selectors';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+
 @Injectable()
 export class AuthFacade {
     readonly user = this.store.select(getUser);
