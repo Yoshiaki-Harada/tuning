@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, tap } from 'rxjs/operators';
-import { LocalStorageDriver } from 'src/app/core/driver/local-storage-driver';
 import { UserPort } from 'src/app/core/port/user-port';
 import * as AuthActions from './auth.actions';
 

@@ -14,8 +14,14 @@ export class PostListEffects {
 
     addPost = createEffect(() => this.actions$.pipe(
         ofType(PostListActions.addPost),
-        tap(action => this.postPort.add(action.post)),
+        tap(action => this.postPort.addPost(action.userId, action.content)),
         map(() => PostListActions.addPostSuccess())
+    ));
+
+    deletePost = createEffect(() => this.actions$.pipe(
+        ofType(PostListActions.deletePost),
+        tap(action => this.postPort.delete(action.id)),
+        map(() => PostListActions.deletePostSuccess())
     ));
     constructor(private actions$: Actions, private postPort: PostPort) { }
 }

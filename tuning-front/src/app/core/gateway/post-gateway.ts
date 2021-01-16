@@ -13,12 +13,15 @@ export class PostGateway extends PostPort {
 
     getChanges(): Observable<Post[]> {
         return this.firestoreDriver.loadPosts().pipe(
-            map((posts: PostDto[]) => posts.map(e => ({ content: e.content })))
+            map((posts: PostDto[]) => posts.map(e => ({ id: e.id, userId: e.userId, content: e.content })))
         );
     }
 
-    add(post: Post): void {
-        this.firestoreDriver.addPost({ content: post.content });
+    addPost(userId: string, content: string): void {
+        this.firestoreDriver.addPost({ userId, content });
     }
 
+    delete(id: string): Promise<void> {
+        return this.firestoreDriver.deletePost(id);
+    }
 }

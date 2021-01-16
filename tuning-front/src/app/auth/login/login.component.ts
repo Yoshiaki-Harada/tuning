@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
       displayName: event.displayName,
       email: event.email,
       photoURL: event.photoURL,
-      uid: event.uid,
+      id: event.uid,
       refreshToken: event.refreshToken
     };
     this.authFacade.loginSuccess(user);

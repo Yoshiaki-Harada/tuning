@@ -24,11 +24,12 @@ import { UserPort } from './core/port/user-port';
 import { UserGateway } from './core/gateway/user-gateway';
 import { PostPort } from './core/port/post-port';
 import { PostGateway } from './core/gateway/post-gateway';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,6 +43,7 @@ import { PostGateway } from './core/gateway/post-gateway';
     AuthModule,
     BrowserAnimationsModule,
     NgxAuthFirebaseUIModule.forRoot(environment.firebase),
+    SharedModule,
   ],
   providers: [
     { provide: AuthGuard },

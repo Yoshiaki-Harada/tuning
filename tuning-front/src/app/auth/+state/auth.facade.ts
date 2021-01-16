@@ -3,6 +3,9 @@ import { AuthState, User } from './auth.reducer';
 import * as AuthActions from './auth.actions';
 import { getIsLogin, getUser } from './auth.selectors';
 import { Injectable } from '@angular/core';
+import { Post } from 'src/app/post-list/+state/post-list.reducer';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class AuthFacade {
@@ -23,4 +26,13 @@ export class AuthFacade {
         this.store.dispatch(AuthActions.logout());
     }
 
+    isMine(post: Post): Observable<boolean> {
+        return this.user.pipe(
+            map(user => {
+                console.log(`userId:  ${user.id}`);
+                console.log(`post  userId:  ${post.userId}`);
+                return user.id === post.userId;
+            })
+        );
+    }
 }

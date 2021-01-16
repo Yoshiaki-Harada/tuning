@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthFacade } from '../auth/+state/auth.facade';
 import { PostListFacade } from '../post-list/+state/post-list.facade';
 import { Post } from '../post-list/+state/post-list.reducer';
 import { CreatedPost } from './model';
@@ -10,13 +11,15 @@ import { CreatedPost } from './model';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private postListFacase: PostListFacade) { }
+  constructor(private postListFacase: PostListFacade, private authFacade: AuthFacade) { }
 
   ngOnInit(): void {
     this.postListFacase.setPosts();
   }
 
   addPost(post: CreatedPost): void {
-    this.postListFacase.addPost({ content: post.content });
+    this.authFacade.user.subscribe(user => {
+      this.postListFacase.addPost({ userId: user.id, content: post.content });
+    });
   }
 }

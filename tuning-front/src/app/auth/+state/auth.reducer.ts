@@ -8,7 +8,7 @@ export interface User {
   email: string;
   photoURL: string;
   providerId: string;
-  uid: string;
+  id: string;
   refreshToken: string;
 }
 

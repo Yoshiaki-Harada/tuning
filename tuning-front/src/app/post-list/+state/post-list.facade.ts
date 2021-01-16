@@ -15,7 +15,11 @@ export class PostListFacade {
         this.store.dispatch(PostListActions.loadPosts());
     }
 
-    addPost(post: Post): void {
-        this.store.dispatch(PostListActions.addPost({ post }));
+    addPost(newPost: { userId: string; content: string }): void {
+        this.store.dispatch(PostListActions.addPost(newPost));
+    }
+
+    deletePost(id: string): void {
+        this.store.dispatch(PostListActions.deletePost({ id }));
     }
 }

@@ -5,5 +5,6 @@ import { Post } from 'src/app/post-list/+state/post-list.reducer';
 @Injectable()
 export abstract class PostPort {
     abstract getChanges(): Observable<Post[]>;
-    abstract add(post: Post): void;
+    abstract addPost(userId: string, content: string): void;
+    abstract delete(id: string): void;
 }
