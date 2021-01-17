@@ -6,7 +6,7 @@ import * as PostListActions from './post-list.action';
 
 @Injectable()
 export class PostListEffects {
-    loadArticles = createEffect(() => this.actions$.pipe(
+    loadPosts = createEffect(() => this.actions$.pipe(
         ofType(PostListActions.loadPosts),
         switchMap(() => this.postPort.getChanges()),
         map(posts => PostListActions.loadPostsSuccess({ posts }))
@@ -16,6 +16,12 @@ export class PostListEffects {
         ofType(PostListActions.addPost),
         tap(action => this.postPort.addPost(action.userId, action.content)),
         map(() => PostListActions.addPostSuccess())
+    ));
+
+    updatePost = createEffect(() => this.actions$.pipe(
+        ofType(PostListActions.updatePost),
+        tap(action => this.postPort.updatePost(action.id, action.content)),
+        map(() => PostListActions.updatePostSuccess())
     ));
 
     deletePost = createEffect(() => this.actions$.pipe(

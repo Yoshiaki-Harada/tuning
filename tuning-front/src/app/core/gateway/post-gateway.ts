@@ -21,6 +21,10 @@ export class PostGateway extends PostPort {
         this.firestoreDriver.addPost({ userId, content });
     }
 
+    updatePost(id: string, content: string): void {
+        this.firestoreDriver.updatePost(id, content);
+    }
+
     delete(id: string): Promise<void> {
         return this.firestoreDriver.deletePost(id);
     }

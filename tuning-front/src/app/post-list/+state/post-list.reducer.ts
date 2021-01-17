@@ -15,15 +15,30 @@ export interface Post {
 
 export interface Posts {
     items: Post[];
+    editingId: string;
 }
 
-export const initialState: Posts = { items: [] };
+export const initialState: Posts = { items: [], editingId: null };
 
 const reducer = createReducer(
     initialState,
     on(PostListActions.loadPosts, (state, actions) => ({ ...state })),
     on(PostListActions.loadPostsSuccess, (state, action) => ({ ...state, items: [...action.posts] })),
     on(PostListActions.addPostSuccess, (state, action) => ({ ...state })),
+    on(PostListActions.startEditPost, (state, action) => ({ ...state, editingId: action.id })),
+    on(PostListActions.cancelEditPost, (state, action) => ({ ...state, editingId: null })),
+    on(PostListActions.updatePostSuccess, (state, action) => ({ ...state, editingId: null })),
+    on(PostListActions.updateLocalPost, (state, action) => {
+        const items = state.items
+            .map(post => {
+                if (post.id === action.id) {
+                    return { ...post, content: action.content };
+                } else {
+                    return post;
+                }
+            });
+        return { ...state, items };
+    }),
     on(PostListActions.deletePostSuccess, (state, action) => ({ ...state }))
 );
 

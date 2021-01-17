@@ -9,13 +9,16 @@ import { EffectsModule } from '@ngrx/effects';
 import { PostListEffects } from './+state/post-list.effect';
 import { PostListFacade as PostListFacade } from './+state/post-list.facade';
 import { PostItemComponent } from './post-item/post-item.component';
+import { PostEditItemComponent } from './post-editing-item/post-edit-item.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [PostListComponent, PostItemComponent],
+  declarations: [PostListComponent, PostItemComponent, PostEditItemComponent],
   imports: [
     CommonModule,
     PostListRoutingModule,
+    ReactiveFormsModule,
     StoreModule.forFeature(postListFeatureKey, postListReducer, { initialState }),
     EffectsModule.forFeature([PostListEffects])
   ],

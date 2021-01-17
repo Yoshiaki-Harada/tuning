@@ -6,5 +6,6 @@ import { Post } from 'src/app/post-list/+state/post-list.reducer';
 export abstract class PostPort {
     abstract getChanges(): Observable<Post[]>;
     abstract addPost(userId: string, content: string): void;
+    abstract updatePost(id: string, content: string): void;
     abstract delete(id: string): void;
 }

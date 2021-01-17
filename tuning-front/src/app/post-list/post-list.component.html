@@ -1,8 +1,16 @@
 <div class="posts">
     <div class="row">
         <div class="col-md-12">
-            <app-post-item *ngFor="let post of posts$|async; let i=index" [post]="post" [isMine]="isMine(post) |async"
-                (deletePost)="deletePost($event)"></app-post-item>
+            <ng-container *ngFor="let post of posts$|async;">
+                <app-post-item *ngIf="(isEdit(post)|async) === false; else elseBlock" [post]="post"
+                    [isMine]="isMine(post) |async" (deletePost)="deletePost($event)" (editPost)="startEdit($event)">
+                </app-post-item>
+                <ng-template #elseBlock>
+                    <app-post-edit-item [post]="post" (editedPost)="saveEdited($event)" (cancelEditPost)="cancelEdit()">
+                    </app-post-edit-item>
+                </ng-template>
+            </ng-container>
+
         </div>
     </div>
 </div>

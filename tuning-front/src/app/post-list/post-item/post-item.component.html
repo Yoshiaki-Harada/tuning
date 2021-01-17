@@ -1,8 +1,13 @@
 <div class="post-item card mb-3 bg-light">
     <div class="card-header container-fluid">
-        <button *ngIf="isMine" type="button" class="delete-button right" (click)="onDelete()" data-test="delete-box">
-            <div class="far fa-trash-alt"></div>
-        </button>
+        <div class="menu right">
+            <button *ngIf="isMine" type="button" class="edit-button" (click)="onEdit()" data-test="edit-button">
+                <div class="fas fa-pen"></div>
+            </button>
+            <button *ngIf="isMine" type="button" class="delete-button" (click)="onDelete()" data-test="delete-box">
+                <div class="far fa-trash-alt"></div>
+            </button>
+        </div>
     </div>
     <div class="card-body">
         <h5 class="card-title">

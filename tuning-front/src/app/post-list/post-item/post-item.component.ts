@@ -12,6 +12,7 @@ export class PostItemComponent implements OnInit {
   @Input() post: Post;
   @Input() isMine: boolean;
   @Output() deletePost: EventEmitter<string> = new EventEmitter();
+  @Output() editPost: EventEmitter<string> = new EventEmitter();
 
   constructor(private dialog: MatDialog) { }
 
@@ -21,14 +22,16 @@ export class PostItemComponent implements OnInit {
 
   onDelete(): void {
     const dialogRef = this.dialog.open(DeleteModalComponent);
-
     dialogRef.afterClosed().subscribe(
       result => {
         if (result !== undefined && result.delete) {
-          console.log('delete');
           this.deletePost.emit(this.post.id);
         }
       }
     );
+  }
+
+  onEdit() {
+    this.editPost.emit(this.post.id);
   }
 }

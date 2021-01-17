@@ -29,6 +29,11 @@ export class FirestoreDriver {
         return this.db.collection<NewPostDto>('posts').add(post);
     }
 
+    updatePost(id: string, content: string): Promise<void> {
+        const ref = this.db.collection<PostDto>('posts').doc(id);
+        return ref.update({ content });
+    }
+
     deletePost(id: string): Promise<void> {
         const ref = this.db.collection<PostDto>('posts').doc(id);
         return ref.delete();
