@@ -16,6 +16,10 @@ export class SlackDriver {
     async addReaction(emoji: string, channelId: string, timestamp: string) {
         await this.web.reactions.add({ name: emoji, channel: channelId, timestamp });
     }
+
+    async getUsers(): Promise<UserListResult> {
+        return await this.web.users.list() as UserListResult;
+    }
 }
 
 export interface ChatPostMessageResult extends WebAPICallResult {
@@ -24,4 +28,12 @@ export interface ChatPostMessageResult extends WebAPICallResult {
     message: {
         text: string;
     }
+}
+
+
+export interface UserListResult extends WebAPICallResult {
+    members: {
+        id: string;
+        name:string;
+    }[]
 }

@@ -4,6 +4,7 @@ import { SlackDriver } from './driver/slack-driver';
 import { PostGateway } from './gateway/post-gateway';
 import { SendPostUsecaseWithAnonymous as SendPostUsecaseByAnonymous } from './usecase/send-post-usecase-with-anonymous';
 import * as aws from 'aws-sdk';
+import { UserGateway } from './gateway/user-gateway';
 // export async function wrapHandler(event, context, callback) {
 //     const lambda = new aws.Lambda()
 //     const params = {
@@ -27,7 +28,8 @@ export async function anonymousHandler(event, context, callback) {
     }
     const slackDriver = new SlackDriver(token);
     const postPort = new PostGateway(slackDriver)
-    const usecase = new SendPostUsecaseByAnonymous(postPort)
+    const userPort = new UserGateway(slackDriver)
+    const usecase = new SendPostUsecaseByAnonymous(postPort, userPort)
 
     const query = qs.parse(event.body)
     const slackRequest = parseSlackRequest(query)

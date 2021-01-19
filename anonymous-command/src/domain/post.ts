@@ -1,6 +1,5 @@
-import { restore } from "sinon";
 import { createEmojis, Emojis } from "./emoji"
-import { reolyIdCommandRegExp as replyIdCommandRegExp, stampCommandRegExp } from "./tempate";
+import { reolyIdCommandRegExp as replyIdCommandRegExp, stampCommandRegExp, userRegExp } from "./tempate";
 
 export class Post {
     constructor(readonly text: Text, readonly emojis: Emojis, readonly channelId: ChannelId) { }
@@ -9,8 +8,9 @@ export class Post {
 export class Reply {
     constructor(readonly text: Text, readonly emojis: Emojis, readonly channelId: ChannelId, readonly threadId: ThreadId) { }
 }
+
 function createText(originalText: string) {
-    const text = originalText.replace(stampCommandRegExp, '').replace(replyIdCommandRegExp, '').trim();
+    const text = originalText.replace(stampCommandRegExp, '').replace(replyIdCommandRegExp, '').replace(userRegExp, '').trim();
     return new Text(text)
 }
 export function createPost(originalText: string, channelId: ChannelId): Post {
