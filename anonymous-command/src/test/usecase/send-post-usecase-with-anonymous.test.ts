@@ -23,7 +23,7 @@ describe('匿名でポストするテスト', () => {
         await usecase.run(originalText, channelId, threadId)
         mock.verify()
     }),
-        it('threadIdがある場合はチャンネルにポストする', async () => {
+        it('threadIdがない場合はチャンネルにポストする', async () => {
             const mockManager = ImportMock.mockClass(driverModule, 'SlackDriver');
             const gateway = new PostGateway(mockManager.getMockInstance())
             const usecase = new SendPostUsecaseWithAnonymous(gateway)
@@ -33,9 +33,11 @@ describe('匿名でポストするテスト', () => {
             const mock = sinon.mock(gateway)
             const postId = new PostId(channelId, new ThreadId('tid2'))
             const emojis = new Emojis([new Emoji('ok')])
-
+            const chPostResult: driverModule.ChatPostMessageResult = {}
             mock.expects('send').once().withArgs(new Post(text, emojis, channelId)).returns(postId)
             mock.expects('addEmoji').once().withArgs(postId, emojis)
+
+            mock.expects('reply').once().withArgs(new Text(`返信用ID: tid2`), new Emojis([]), postId.channelId, postId.threadId).returns()
             await usecase.run(originalText, channelId, null)
             mock.verify()
         })

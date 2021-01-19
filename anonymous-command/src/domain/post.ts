@@ -1,4 +1,5 @@
 import { createEmojis, Emojis } from "./emoji"
+import { stampCommandRegExp } from "./tempate";
 
 export class Post {
     constructor(readonly text: Text, readonly emojis: Emojis, readonly channelId: ChannelId) { }
@@ -10,13 +11,13 @@ export class Reply {
 
 export function createPost(originalText: string, channelId: ChannelId): Post {
     const emojis = createEmojis(originalText)
-    const text = originalText.replace(/stamp=\[.*\]/g, '').trim();
+    const text = originalText.replace(stampCommandRegExp, '').trim();
     return new Post(new Text(text), emojis, channelId)
 }
 
 export function createReply(originalText: string, channelId: ChannelId, threadId: ThreadId): Reply {
     const emojis = createEmojis(originalText)
-    const text = originalText.replace(/stamp=\[.*\]/g, '').trim();
+    const text = originalText.replace(stampCommandRegExp, '').trim();
     return new Reply(new Text(text), emojis, channelId, threadId)
 }
 
