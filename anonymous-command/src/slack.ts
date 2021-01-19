@@ -32,7 +32,7 @@ export async function anonymousHandler(event, context, callback) {
     const query = qs.parse(event.body)
     const slackRequest = parseSlackRequest(query)
     try {
-        await usecase.run(slackRequest.text, new ChannelId(slackRequest.channel_id), null)
+        await usecase.run(slackRequest.text, new ChannelId(slackRequest.channel_id))
         console.log('[END] ANONYMOUS POST');
         response = {
             'statusCode': 200,

@@ -1,11 +1,12 @@
 import { Emoji, Emojis } from "../domain/emoji";
-import { ChannelId, createPost, createReply, Post, PostId, Reply, Text, ThreadId } from "../domain/post";
+import { ChannelId, createPost, createReply, createThreadId, Post, PostId, Reply, Text, ThreadId } from "../domain/post";
 import { PostPort } from "../port/post-port";
 
 export class SendPostUsecaseWithAnonymous {
     constructor(private postPort: PostPort) { }
-    async run(originalText: string, channelId: ChannelId, threadId: ThreadId | null) {
+    async run(originalText: string, channelId: ChannelId) {
         let postId: PostId;
+        const threadId = createThreadId(originalText);
         if (threadId !== null) {
             console.log('REPLY')
             const reply = createReply(originalText, channelId, threadId)

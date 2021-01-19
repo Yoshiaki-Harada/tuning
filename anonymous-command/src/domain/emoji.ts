@@ -1,3 +1,5 @@
+import { stampCommandRegExp } from "./tempate"
+
 export class Emojis {
     constructor(readonly list: Emoji[]) { }
 }
@@ -7,7 +9,7 @@ export class Emoji {
 }
 
 export function createEmojis(originalText: string): Emojis {
-    const regex = new RegExp(/stamp=\[.*\]/g)
+    const regex = stampCommandRegExp
     const regex2 = new RegExp(/:(.*):/g)
     const result: Emoji[] | undefined = regex.exec(originalText)?.toString()
         .replace('[', '')
