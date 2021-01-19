@@ -1,14 +1,9 @@
 import { ChatPostMessageResult, SlackDriver } from "../../driver/slack-driver"
-import * as driverModule from "../../driver/slack-driver"
 import { PostGateway } from "../../gateway/post-gateway"
-import { ImportMock } from 'ts-mock-imports';
 import { ChannelId, Destination, Post, PostId, Reply, Text, ThreadId } from "../../domain/post";
 import { Emoji, Emojis } from "../../domain/emoji";
-import * as sinonTs from "ts-sinon";
 import * as sinon from "sinon";
 import { expect } from "chai";
-import { constants } from "os";
-import { reset } from "sinon";
 
 
 describe('PostGateway.addEmojisのテスト', () => {

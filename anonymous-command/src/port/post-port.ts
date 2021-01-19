@@ -1,5 +1,5 @@
 import { Emojis } from "../domain/emoji";
-import { Destination, Post, PostId, Reply } from "../domain/post";
+import { Post, PostId, Reply } from "../domain/post";
 
 export interface PostPort {
     send(post: Post): Promise<PostId>;
