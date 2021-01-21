@@ -7,7 +7,7 @@ describe('ホーム画面  投稿作成用のテスト', () => {
     })
     it('投稿することができる', () => {
         const content = 'post test content'
-        cy.get('.post-form').get('input').type(content)
+        cy.get('.post-form').find('input').type(content)
         cy.get('.add-post').click()
         cy.contains(content).should('be.visible')
     })
