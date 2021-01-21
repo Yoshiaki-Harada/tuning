@@ -10,6 +10,8 @@ declare global {
     interface Chainable<Subject> {
       google(): Chainable<Window>;
       navigate(pageName: string): void;
+      getBySel(dataTestAttribute: string, args?: any): Chainable<Element>;
+      findBySel(dataTestAttribute: string, args?: any): Chainable<Element>;
     }
   }
 }
@@ -33,6 +35,11 @@ if (firestoreEmulatorHost) {
   });
 
 }
+
+// cypress/support/index.ts
+Cypress.Commands.add("getBySel", (selector, ...args) => {
+  return cy.get(`[data-test=${selector}]`, ...args);
+});
 
 attachCustomCommands({ Cypress, cy, firebase });
 

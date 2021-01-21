@@ -25,7 +25,7 @@ export const createUsers = () => {
         (fileNames as string[]).forEach((f) => {
             cy.readFile<User>(`${resoucePath}/users/${f}`)
                 .then(user => {
-                    cy.task('createUser', user).then(_ => { })
+                    cy.task('createUser', { ...user, uid: f.replace('.json', '') }).then(_ => { })
                 });
         })
     })
@@ -34,6 +34,7 @@ export const createUsers = () => {
 // resources直下のuserしかclearできない
 export const clearUsers = () => {
     console.log('Clear users..')
+    cy.callFirestore('delete', 'users', { recursive: true });
     cy.task('getFileNames', `${resoucePath}/users`).then(fileNames => {
         (fileNames as string[]).forEach((f) => {
             cy.readFile<User>(`${resoucePath}/users/${f}`)

@@ -1,6 +1,5 @@
 import "firebase/firestore";
 
-
 describe('ホーム画面', () => {
     beforeEach(() => {
         cy.visit('/login');
@@ -14,11 +13,5 @@ describe('ホーム画面', () => {
     it('投稿の一覧が表示される', () => {
         cy.contains('test comment 1').should('be.visible')
         cy.contains('test comment 2').should('be.visible')
-    })
-    it('投稿することができる', () => {
-        const content = 'post test content'
-        cy.get('.post-form').get('input').type(content)
-        cy.get('.add-post').click()
-        cy.contains(content).should('be.visible')
     })
 })

@@ -6,7 +6,7 @@
                 <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-item">
                     <a class="nav-link home" routerLink="/"> Home </a>
                 </li>
-                <li routerLinkActive="active" class="nav-item"> <a class="nav-link notification"
+                <li routerLinkActive="active" class="nav-item" *ngIf="isLogin | async"> <a class="nav-link notification"
                         routerLink="/notification"> 通知 </a>
                 </li>
             </ul>
@@ -16,8 +16,11 @@
                 <li routerLinkActive="active" class="nav-item"> <a class="nav-link register" routerLink="/register">
                         Register </a> </li>
             </ul>
-            <ul class="navbar-nav mt-2 mt-lg-0" *ngIf="isLogin | async">
-                <li class="nav-item"> <a class="logout" (click)="onLogout()"> Logout </a> </li>
+            <ul class="navbar-nav mt-2 mt-lg-0" style="width: 50%;">
+                <li class="nav-item  mr-auto" style="width:70%">
+                    <app-search (searchEvent)="onSearch($event)"></app-search>
+                </li>
+                <li class="nav-item"> <a class="logout" type="button" (click)="onLogout()"> Logout </a> </li>
             </ul>
         </div>
     </nav>

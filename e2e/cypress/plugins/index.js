@@ -15,9 +15,13 @@ module.exports = (on, config) => {
   });
   on('task', {
     createUser(user) {
-      return admin.auth().createUser(user).catch((error) => {
-        console.log(error)
-      });
+      return admin.auth().createUser(user)
+        .then((user) => {
+          return user;
+        })
+        .catch((error) => {
+          console.log(error)
+        });
     }
   });
   on('task', {

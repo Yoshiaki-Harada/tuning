@@ -1,0 +1,9 @@
+<form [formGroup]="searchForm">
+    <div class="input-group rounded">
+        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+            aria-describedby="search-addon" formControlName="word" data-test="search-form" />
+        <span class="input-group-text border-0" id="search-addon" type="button" (click)="onSearch()" data-test="search">
+            <i class="fas fa-search"></i>
+        </span>
+    </div>
+</form>

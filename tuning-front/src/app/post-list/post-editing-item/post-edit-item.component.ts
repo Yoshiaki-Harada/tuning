@@ -1,6 +1,6 @@
 import { EventEmitter } from '@angular/core';
 import { Component, Input, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Post } from '../+state/post-list.reducer';
 
 @Component({
@@ -18,7 +18,7 @@ export class PostEditItemComponent implements OnInit {
 
   ngOnInit(): void {
     this.postForm = new FormGroup({
-      content: new FormControl(this.post.content)
+      content: new FormControl(this.post.content, Validators.required)
     });
   }
 

@@ -25,15 +25,19 @@ import { UserGateway } from './core/gateway/user-gateway';
 import { PostPort } from './core/port/post-port';
 import { PostGateway } from './core/gateway/post-gateway';
 import { SharedModule } from './shared/shared.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SearchComponent } from './header/search/search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     StoreRouterConnectingModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,

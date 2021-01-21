@@ -1,10 +1,15 @@
 import { Action, createReducer, on } from '@ngrx/store';
+import { filter } from 'rxjs/operators';
 import * as PostListActions from './post-list.action';
 
 export const postListFeatureKey = 'postList';
 
 export interface PostListState {
     readonly [postListFeatureKey]: Posts;
+}
+
+export interface Filter {
+    word: string;
 }
 
 export interface Post {
@@ -15,15 +20,17 @@ export interface Post {
 
 export interface Posts {
     items: Post[];
+    filter: Filter;
     editingId: string;
 }
 
-export const initialState: Posts = { items: [], editingId: null };
+export const initialState: Posts = { items: [], editingId: null, filter: null };
 
 const reducer = createReducer(
     initialState,
     on(PostListActions.loadPosts, (state, actions) => ({ ...state })),
-    on(PostListActions.loadPostsSuccess, (state, action) => ({ ...state, items: [...action.posts] })),
+    on(PostListActions.loadPostsSuccess, (state, action) => ({ ...state, items: [...action.posts], filter: null })),
+    on(PostListActions.setFilter, (state, action) => ({ ...state, filter: action.filter })),
     on(PostListActions.addPostSuccess, (state, action) => ({ ...state })),
     on(PostListActions.startEditPost, (state, action) => ({ ...state, editingId: action.id })),
     on(PostListActions.cancelEditPost, (state, action) => ({ ...state, editingId: null })),

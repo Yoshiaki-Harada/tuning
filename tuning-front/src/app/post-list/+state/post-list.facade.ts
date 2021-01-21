@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Post, PostListState } from './post-list.reducer';
+import { Filter, Post, PostListState } from './post-list.reducer';
 import { getPosts, getEditingId } from './post-list.selectors';
 import * as PostListActions from './post-list.action';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class PostListFacade {
     readonly posts = this.store.select(getPosts);
     readonly editingId = this.store.select(getEditingId);
@@ -14,6 +14,10 @@ export class PostListFacade {
 
     setPosts(): void {
         this.store.dispatch(PostListActions.loadPosts());
+    }
+
+    setFilter(filter: Filter): void {
+        this.store.dispatch(PostListActions.setFilter({ filter }));
     }
 
     addPost(newPost: { userId: string; content: string }): void {
